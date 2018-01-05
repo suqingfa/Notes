@@ -211,3 +211,80 @@ ax ≡ b mod m 对每个 b ∈ Zm 有唯一解 x ∈ Zm 当且仅当 gcd(a, m) =
 上述四种攻击的目的是确定正在使用的密钥。攻击强度是顺序增加的，如果一个密码体制能够抵抗选择密文攻击，则能抵抗前三种攻击。
 
 密码分析的许多特性是利用了英文语言的统计特性。
+
+# 数论
+
+## 欧几里得算法
+
+欧几里得除法1    
+设整数 a、b, 其中 b > 0 , 存在唯一整数q、r使得     
+a = bq + r, 0 <= r < b
+
+欧几里得除法2    
+设整数 a、b, 其中 b > 0 , 对任意整数 c, 存在唯一整数q、r使得     
+a = bq + r, c <= r < b + c    
+- 0 <= r < b 时叫最小非负余数
+- 1 <= r <= b 时叫最小正数余数
+- -b + 1 <=r <= r 时叫最大非正余数
+- -b <= r < 0 时叫最大负余数
+- -b/2 <= r < b/2 时叫绝对值最小余数
+
+*定理*    
+设 a、b、c 为三个不全为0的整数，如果 a = bq + c，其中q是整数，则 gcd(a, b) = gcd(b, c)
+
+## 扩展欧几里得算法
+sa + tb = gcd(a, b)
+
+*定理*    
+设a, b是正整数，r0 = a, r1 = b, rn = gcd(a, d), 则sn a + tn b = gcd(a, b)    
+s0 = 1, s1 = 0, sj = s(j-2) - q(j-1) s(j-1)    
+t0 = 0, t1 = 1, tj = t(j-2) - q(j-1) t(j-1)
+
+## 模运算性质
+- 如果 n|(a-b), 那么 a ≡ b mod n
+- 如果 a ≡ b mod n, b ≡ c mod n 那么 a ≡ c mod n
+- [a mod n + b mod n ] mod n = (a + b) mod n
+- [a mod n - b mod n ] mod n = (a - b) mod n
+- [a mod n * b mod n ] mod n = (a * b) mod n
+- 如果 a + b ≡ a + c mod n，那么 b ≡ c mod n
+- 如果 a, b 互素，且 a * b ≡ a * c mod n，则 b ≡ c mod n
+
+## 离散对数
+*欧拉定理*    
+如果 gcd(a, n) = 1, 则 a ^ φ(n) ≡ 1 mod n
+
+*定义 模n下a的阶*    
+a ^ m ≡ 1 mod n 的最小正正数 m 称为 模n下a的阶    
+*定义 素根*    
+如果 a 的阶等于 φ(n) ,则称 a 为 n 的素根    
+*定理*    
+如果 a 是 n 的素根， 则 a, a^2, a^3,...a^φ(n) 在模 n 下互不相同，且互素    
+特别地，如果 a 是素数 p 的素根，则 a, a^2, a^3,...a^(p-1) 在模 p 下，均与p互素
+
+设 p 是素数，a 是 p 的素根，则    
+对于任意 y(1<= y <= p-1) 都存在唯一的正整数 x(1<= x <= p-1) 使得
+y ≡ a^x mod p    
+称 x 为模 p 下以 a 为底 y 的对数。记为 x = ind a,p (y)  即离散对数
+
+离散对数性质
+- ind a,p (1) = p-1
+- ind a,p (a) = 1
+- ind a,p (xy) = [ind a,p (x) + ind a,p (y)] mod φ(p)
+- ind a,p (x^y) = [y * ind a,p (x)] mod φ(p)
+- 若 a^x ≡ a^y mod n, 其中a,n互素, a是n的素根, 则有 x ≡ y mod φ(n)
+
+当a,p和x已知求y时至多需要2log a p 次乘法运算    
+当a,p和y已知求x时至少需要 p^0.5 次以上运算。离散对数问题
+
+## 素数测试
+
+### 费马定理
+若 p 是素数，a 是正整数且不能被 p 整除 则 a^(p-1) ≡ 1 mod p
+
+### 费马素性测试
+若给定数 n，能找个一个整数 a 使得 a^(n-1) !≡ 1 mod n，则 n 是一个合数
+
+### 欧拉定理
+如果 gcd(a, m) = 1，则有 a^φ(m) ≡ 1 mod m
+
+### Miller-Rabin 素数测试
