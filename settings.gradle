@@ -1,3 +1,4 @@
 rootProject.name = 'Notes'
 include 'Crypto'
+include 'SE'
 
