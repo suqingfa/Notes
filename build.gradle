@@ -1,0 +1,24 @@
+configure(allprojects) { project ->
+    group 'Learn'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        compile(
+                'commons-codec:commons-codec:1.+',
+                'org.bouncycastle:bcprov-jdk15on:1.+',
+        )
+
+        compileOnly(
+                'org.projectlombok:lombok:1.+',
+        )
+    }
+}
