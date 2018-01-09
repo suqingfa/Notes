@@ -2,4 +2,5 @@ rootProject.name = 'Notes'
 include 'Crypto'
 include 'SE'
 include 'NetworkAttacksAndProtection'
+include 'Networks'
 
