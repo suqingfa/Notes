@@ -179,8 +179,8 @@ RSA 的保密强度来自于大合数的分解的困难性，ECC的保密强度�
 *欧拉函数 φ(m)*    
 定义在正整数集上的函数，φ(m)的值等于序列{1, 2, 3 ... m-1}中与m互素的数的个数 。
 
-设 ![](./images/1.png) 其中pi是不同的素数    
-那么 ![](./images/2.png)    
+设 ![](http://latex.codecogs.com/gif.latex?m=\prod_{i=1}^{n}p_{i}^{e_i}) 其中pi是不同的素数    
+那么 ![](http://latex.codecogs.com/gif.latex?\varphi(m)=\prod_{i=1}^{n}(p_{i}^{e_i}-p_{i}^{e_{i}-1}))    
 例如 26 = 2 * 13 则 φ(26) = (2^1 - 2^0) * (13^1 - 13^0) = 12
 
 *同余式*    
